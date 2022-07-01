@@ -161,3 +161,86 @@ const inventory = [
     sold: 8,
   },
 ];
+
+const tvTypes = inventory.map((tv) => {
+  return tv.type
+})
+//
+// console.log(tvTypes)
+//
+// const soldOut = inventory.filter((tv) => {
+//   if (tv.originalStock === tv.sold) {
+//     return true
+//   }
+// })
+//
+// console.log(soldOut)
+//
+// const hasAmbiLight = inventory.filter((tv) => {
+//   if (tv.options.ambiLight === true) {
+//     return true
+//   }
+// })
+//
+// console.log(hasAmbiLight)
+//
+// inventory.sort((a, b) => {
+//   return  a.price - b.price
+// })
+//
+// console.log(inventory)
+
+// OPDRACHT 2
+
+const soldTvsContainer = document.getElementById('sold-tvs');
+const boughtTvsContainer = document.getElementById('bought-tvs');
+const toBeSoldTvsContainer = document.getElementById('to-be-sold-tvs');
+
+const tvsSold = (tv) => {
+  let outcome = 0;
+  for (let i = 0; i < tv.length; i++) {
+    outcome += tv[i].sold;
+  } return outcome
+}
+
+const soldTvs = tvsSold(inventory);
+
+const tvsBought = (tv) => {
+  let outcome = 0;
+  for (let i = 0; i < tv.length; i++) {
+    outcome += tv[i].originalStock;
+  } return outcome
+}
+
+const boughtTvs = tvsBought(inventory)
+
+const toBeSold = () => {
+  return boughtTvs - soldTvs
+}
+
+soldTvsContainer.textContent = `Amount sold tv's = ${soldTvs}`
+boughtTvsContainer.textContent = `Amount bought tv's = ${boughtTvs}`
+toBeSoldTvsContainer.textContent = `Amount tv's to be sold = ${toBeSold()}`
+
+// OPDRACHT 3
+
+const tvBrands = inventory.map((tv) => {
+  return tv.brand
+})
+
+function createList (arr) {
+  const tvBrandsContainer = document.getElementById('tv-brands-container');
+  arr.map((tv) => {
+    tvBrandsContainer.innerHTML += `<li>${tv.brand}</li>`
+  })
+}
+
+createList(inventory)
+
+function createTv (arr) {
+  arr.map((tv) => {
+    return tv.brand + tv.type + tv.name
+  })
+}
+
+console.log(createTv(inventory))
